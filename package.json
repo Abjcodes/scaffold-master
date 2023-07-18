@@ -1,0 +1,17 @@
+{
+    "name": "our-product",
+    "version": "1.0.0",
+    "description": "Generate boilerplate templates for Chrome extensions",
+    "main": "dist/index.js",
+    "scripts": {
+      "build": "tsc",
+      "start": "node dist/index.js"
+    },
+    "author": "Abel saan and Abijith saan",
+    "license": "MIT",
+    "dependencies": {
+      "fs": "^0.0.1-security",
+      "path": "^0.12.7"
+    }
+  }
+  
