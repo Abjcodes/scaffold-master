@@ -1,33 +1,40 @@
-import fs from 'fs';
-import path from 'path';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
-function generateTemplate(name: string, version: string, description: string): void {
-  const targetDirectory = path.join(process.cwd(), name);
+async function generateTemplate(name: string, version: string, description: string): Promise<void> {
+  try {
+    const zip = new JSZip();
 
-  // Create the extension directory
-  fs.mkdirSync(targetDirectory);
+    // Add manifest file
+    const manifestTemplate = await fetch('templates/manifest.json');
+    const manifestContent = (await manifestTemplate.text())
+      .replace('$NAME$', name)
+      .replace('$VERSION$', version)
+      .replace('$DESCRIPTION$', description);
+    zip.file('manifest.json', manifestContent);
 
-  // Copy manifest file
-  const manifestTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'manifest.json'), 'utf-8');
-  const manifestContent = manifestTemplate
-    .replace('$NAME$', name)
-    .replace('$VERSION$', version)
-    .replace('$DESCRIPTION$', description);
-  fs.writeFileSync(path.join(targetDirectory, 'manifest.json'), manifestContent);
+    // Add background script
+    const backgroundTemplate = await fetch('templates/background.ts');
+    const backgroundContent = await backgroundTemplate.text();
+    zip.file('background.ts', backgroundContent);
 
-  // Copy background script
-  const backgroundTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'background.ts'), 'utf-8');
-  fs.writeFileSync(path.join(targetDirectory, 'background.ts'), backgroundTemplate);
+    // Add content script
+    const contentTemplate = await fetch('templates/content.ts');
+    const contentContent = await contentTemplate.text();
+    zip.file('content.ts', contentContent);
 
-  // Copy content script
-  const contentTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'content.ts'), 'utf-8');
-  fs.writeFileSync(path.join(targetDirectory, 'content.ts'), contentTemplate);
+    // Add popup script
+    const popupTemplate = await fetch('templates/popup.ts');
+    const popupContent = await popupTemplate.text();
+    zip.file('popup.ts', popupContent);
 
-  // Copy popup script
-  const popupTemplate = fs.readFileSync(path.join(__dirname, 'templates', 'popup.ts'), 'utf-8');
-  fs.writeFileSync(path.join(targetDirectory, 'popup.ts'), popupTemplate);
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    saveAs(zipBlob, `${name}.zip`);
 
-  console.log('Chrome extension template generated successfully!');
+    console.log('Chrome extension template generated successfully!');
+  } catch (error) {
+    console.error('Error generating template:', error);
+  }
 }
 
 export default generateTemplate;
