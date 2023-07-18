@@ -1,16 +1,19 @@
 {
-    "name": "our-product",
-    "version": "1.0.0",
-    "description": "Generate boilerplate templates for Chrome extensions",
-    "main": "src/index.js",
-    "scripts": {
-        "build": "tsc",
-        "start": "node src/index.js"
-    },
-    "author": "Abel saan and Abijith saan",
-    "license": "MIT",
-    "dependencies": {
-        "file-saver": "^2.0.5",
-        "jszip": "^3.10.1"
-    }
+  "name": "scaffold-kit",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "typescript": "^5.1.6"
+  }
 }
