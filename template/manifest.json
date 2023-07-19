@@ -1,0 +1,11 @@
+{
+    "manifest_version": 1,
+    "name": "Simple Chrome Extension Template",
+    "version": "0.0.1",
+    "description": "description",
+    "author": "AA",
+    "chrome_url_overrides" : {
+      "newtab": "newtab.html"
+    }
+  }
+  
