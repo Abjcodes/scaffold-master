@@ -1,8 +1,11 @@
 import inquirer from "inquirer";
 import fs from "fs-extra";
 import path from "path";
+import { fileURLToPath } from "url";
 
 export default function selectBoilerplate() {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
   const currentDir = process.cwd();
   const boilerplateChoices = [
     {
@@ -26,14 +29,10 @@ export default function selectBoilerplate() {
     ])
     .then((answers) => {
       const selectedBoilerplate = answers.selectBoilerplate;
-      const templatePath = path.join(
-        currentDir,
-        "templates",
-        selectedBoilerplate
-      );
-
+      const prjFolder = `./templates/${selectedBoilerplate}`;
+      const source = path.join(__dirname, prjFolder);
       try {
-        fs.copySync(templatePath, currentDir, { overwrite: true });
+        fs.copySync(source, currentDir, { overwrite: true });
         console.log(
           `Boilerplate "${selectedBoilerplate}" copied to the current working directory.`
         );
