@@ -26,18 +26,57 @@ export default function selectBoilerplate() {
         message: "Which boilerplate code do you want?",
         choices: boilerplateChoices,
       },
+      {
+        type: "input",
+        name: "name",
+        message: "Enter your project name:",
+      },
+      {
+        type: "input",
+        name: "version",
+        message: "Enter the project version:",
+        default: "1.0.0",
+      },
+      {
+        type: "input",
+        name: "description",
+        message: "Enter a brief description of your project:",
+      }
     ])
     .then((answers) => {
       const selectedBoilerplate = answers.selectBoilerplate;
       const prjFolder = `./templates/${selectedBoilerplate}`;
       const source = path.join(__dirname, prjFolder);
+
+      const projectDetails = {
+        name: answers.name,
+        version: answers.version,
+        description: answers.description,
+      };
+
       try {
         fs.copySync(source, currentDir, { overwrite: true });
         console.log(
           `Boilerplate "${selectedBoilerplate}" copied to the current working directory.`
         );
+        const manifestFile = path.join(currentDir, "manifest.json");
+        if (fs.existsSync(manifestFile)) {
+          updateManifest(manifestFile, projectDetails);
+          // console.log("Updated manifest file:", manifestFile);
+        }
+
       } catch (error) {
         console.error("Error copying the boilerplate:", error);
       }
+
+      function updateManifest(manifestPath) {
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+        manifest.name = projectDetails.name;
+        manifest.version = projectDetails.version;
+        manifest.description = projectDetails.description;
+      
+        fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+      }
+
     });
 }
