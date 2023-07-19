@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-const testLog = require("./index.js");
+import selectBoilerplate from "./index.js";
 
-testLog();
+selectBoilerplate();
