@@ -65,6 +65,11 @@ export default function selectBoilerplate() {
           // console.log("Updated manifest file:", manifestFile);
         }
 
+        const packageJson = path.join(currentDir, "package.json");
+        if (fs.existsSync(packageJson)) {
+          updateManifest(packageJson, projectDetails);
+        }
+
       } catch (error) {
         console.error("Error copying the boilerplate:", error);
       }
