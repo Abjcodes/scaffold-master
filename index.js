@@ -16,6 +16,10 @@ export default function selectBoilerplate() {
       name: "Chrome Extension",
       value: "chrome-extension",
     },
+    {
+      name: "Hardhat Nextjs DApp",
+      value: "HArdhat-Nextjs",
+    },
   ];
 
   inquirer
