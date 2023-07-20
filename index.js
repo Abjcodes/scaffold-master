@@ -45,7 +45,7 @@ export default function selectBoilerplate() {
         type: "input",
         name: "description",
         message: "Enter a brief description of your project:",
-      }
+      },
     ])
     .then((answers) => {
       const selectedBoilerplate = answers.selectBoilerplate;
@@ -65,27 +65,25 @@ export default function selectBoilerplate() {
         );
         const manifestFile = path.join(currentDir, "manifest.json");
         if (fs.existsSync(manifestFile)) {
-          updateManifest(manifestFile, projectDetails);
+          updateManifest(manifestFile);
           // console.log("Updated manifest file:", manifestFile);
         }
 
         const packageJson = path.join(currentDir, "package.json");
         if (fs.existsSync(packageJson)) {
-          updateManifest(packageJson, projectDetails);
+          updateManifest(packageJson);
         }
-
       } catch (error) {
         console.error("Error copying the boilerplate:", error);
       }
 
       function updateManifest(manifestPath) {
-        const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
         manifest.name = projectDetails.name;
         manifest.version = projectDetails.version;
         manifest.description = projectDetails.description;
-      
+
         fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
       }
-
     });
 }
