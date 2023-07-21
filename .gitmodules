@@ -1,0 +1,6 @@
+[submodule "templates/Hardhat-Nextjs"]
+	path = templates/Hardhat-Nextjs
+	url = https://github.com/UltimateRoman/Hardhat-Nextjs-Starter.git
+[submodule "templates/Hardhat-Nextjs-old"]
+	path = templates/Hardhat-Nextjs-old
+	url = https://github.com/UltimateRoman/Hardhat-Nextjs-Starter
