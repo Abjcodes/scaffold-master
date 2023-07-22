@@ -7,20 +7,27 @@ export default async function selectBoilerplate() {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const currentDir = process.cwd();
-  const boilerplateChoices = [
-    {
-      name: "Express with TypeScript",
-      value: "express-typescript",
-    },
-    {
-      name: "Chrome Extension",
-      value: "chrome-extension",
-    },
-    {
-      name: "Hardhat Nextjs DApp",
-      value: "HArdhat-Nextjs",
-    },
-  ];
+
+  const templatePath = path.join(__dirname, "templates");
+  const templateFolders = await fs.readdir(templatePath);
+  const boilerplateChoices = templateFolders.map((folder) => ({
+    name: folder,
+    value: folder,
+  }));
+  // const boilerplateChoices = [
+  //   {
+  //     name: "Express with TypeScript",
+  //     value: "express-typescript",
+  //   },
+  //   {
+  //     name: "Chrome Extension",
+  //     value: "chrome-extension",
+  //   },
+  //   {
+  //     name: "Hardhat Nextjs DApp",
+  //     value: "HArdhat-Nextjs",
+  //   },
+  // ];
 
   try {
     const answers = await inquirer.prompt([
@@ -60,10 +67,13 @@ export default async function selectBoilerplate() {
 
     await fs.copy(source, currentDir, { overwrite: true });
     console.log(
-      `Boilerplate "${selectedBoilerplate}" copied to the current working directory.`
+      console.log(
+        templatePath
+      )`Boilerplate "${selectedBoilerplate}" copied to the current working directory.`
     );
 
     const filesToUpdate = ["manifest.json", "package.json"];
+    console.log(des);
     for (const file of filesToUpdate) {
       const filePath = path.join(currentDir, file);
       if (fs.existsSync(filePath)) {

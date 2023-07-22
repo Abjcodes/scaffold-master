@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "my-cli": "cli.js"
+    "scaffold": "generatorCli.js",
+    "cb": "saveCli.js"
   },
   "dependencies": {
     "fs-extra": "^11.1.1",
