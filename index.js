@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import path from "path";
 import { fileURLToPath } from "url";
 
-export default function selectBoilerplate() {
+export default async function selectBoilerplate() {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
   const currentDir = process.cwd();
@@ -22,8 +22,8 @@ export default function selectBoilerplate() {
     },
   ];
 
-  inquirer
-    .prompt([
+  try {
+    const answers = await inquirer.prompt([
       {
         type: "list",
         name: "selectBoilerplate",
@@ -46,44 +46,43 @@ export default function selectBoilerplate() {
         name: "description",
         message: "Enter a brief description of your project:",
       },
-    ])
-    .then((answers) => {
-      const selectedBoilerplate = answers.selectBoilerplate;
-      const prjFolder = `./templates/${selectedBoilerplate}`;
-      const source = path.join(__dirname, prjFolder);
+    ]);
 
-      const projectDetails = {
-        name: answers.name,
-        version: answers.version,
-        description: answers.description,
-      };
+    const selectedBoilerplate = answers.selectBoilerplate;
+    const prjFolder = `./templates/${selectedBoilerplate}`;
+    const source = path.join(__dirname, prjFolder);
 
-      try {
-        fs.copySync(source, currentDir, { overwrite: true });
-        console.log(
-          `Boilerplate "${selectedBoilerplate}" copied to the current working directory.`
-        );
-        const manifestFile = path.join(currentDir, "manifest.json");
-        if (fs.existsSync(manifestFile)) {
-          updateManifest(manifestFile);
-          // console.log("Updated manifest file:", manifestFile);
-        }
+    const projectDetails = {
+      name: answers.name,
+      version: answers.version,
+      description: answers.description,
+    };
 
-        const packageJson = path.join(currentDir, "package.json");
-        if (fs.existsSync(packageJson)) {
-          updateManifest(packageJson);
-        }
-      } catch (error) {
-        // console.error("Error copying the boilerplate:", error);
+    await fs.copy(source, currentDir, { overwrite: true });
+    console.log(
+      `Boilerplate "${selectedBoilerplate}" copied to the current working directory.`
+    );
+
+    const filesToUpdate = ["manifest.json", "package.json"];
+    for (const file of filesToUpdate) {
+      const filePath = path.join(currentDir, file);
+      if (fs.existsSync(filePath)) {
+        await updateManifest(filePath, projectDetails);
       }
+    }
+  } catch (error) {
+    console.error("Error copying the boilerplate:", error);
+  }
 
-      function updateManifest(manifestPath) {
-        const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
-        manifest.name = projectDetails.name;
-        manifest.version = projectDetails.version;
-        manifest.description = projectDetails.description;
-
-        fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-      }
-    });
+  async function updateManifest(manifestPath, projectDetails) {
+    try {
+      const manifest = await fs.readJson(manifestPath);
+      manifest.name = projectDetails.name;
+      manifest.version = projectDetails.version;
+      manifest.description = projectDetails.description;
+      await fs.writeJson(manifestPath, manifest, { spaces: 2 });
+    } catch (error) {
+      console.error("Error updating the manifest:", error);
+    }
+  }
 }
