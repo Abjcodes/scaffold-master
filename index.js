@@ -74,7 +74,7 @@ export default function selectBoilerplate() {
           updateManifest(packageJson);
         }
       } catch (error) {
-        console.error("Error copying the boilerplate:", error);
+        // console.error("Error copying the boilerplate:", error);
       }
 
       function updateManifest(manifestPath) {
