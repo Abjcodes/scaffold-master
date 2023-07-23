@@ -53,6 +53,11 @@ export default async function selectBoilerplate() {
         name: "description",
         message: "Enter a brief description of your project:",
       },
+      {
+        type: "input",
+        name: "author",
+        message: "Enter author's name:",
+      },
     ]);
 
     const selectedBoilerplate = answers.selectBoilerplate;
@@ -63,36 +68,71 @@ export default async function selectBoilerplate() {
       name: answers.name,
       version: answers.version,
       description: answers.description,
+      author: answers.author,
+      dependencies: {},
     };
 
+    if (selectedBoilerplate === "express-typescript") {
+      try{
+        const dependenciesAnswers = await inquirer.prompt([
+          {
+            type: "checkbox",
+            name: "dependencies",
+            message: "Select the dependencies you want to include:",
+            choices: [
+              { name: "cors" },
+              { name: "body-parser" },
+            ],
+          },
+        ]);
+
+        const dependencies = dependenciesAnswers.dependencies;
+        for (const dep of dependencies) {
+          projectDetails.dependencies[dep] = getLatestVersions(dep);
+        }
+        console.log(projectDetails.dependencies)
+      } catch (error) {
+        console.error("Error selecting dependencies", error);
+      }
+    }
+
     await fs.copy(source, currentDir, { overwrite: true });
-    console.log(
-      console.log(
-        templatePath
-      )`Boilerplate "${selectedBoilerplate}" copied to the current working directory.`
-    );
+    console.log(`Boilerplate "${selectedBoilerplate}" copied to the current working directory.`);
 
     const filesToUpdate = ["manifest.json", "package.json"];
-    console.log(des);
+    // console.log(des);
     for (const file of filesToUpdate) {
       const filePath = path.join(currentDir, file);
       if (fs.existsSync(filePath)) {
-        await updateManifest(filePath, projectDetails);
+        await updateBoilerplate(filePath, projectDetails);
       }
     }
   } catch (error) {
     console.error("Error copying the boilerplate:", error);
   }
 
-  async function updateManifest(manifestPath, projectDetails) {
+  async function updateBoilerplate(filePath, projectDetails) {
     try {
-      const manifest = await fs.readJson(manifestPath);
+      const manifest = await fs.readJson(filePath);
       manifest.name = projectDetails.name;
       manifest.version = projectDetails.version;
       manifest.description = projectDetails.description;
-      await fs.writeJson(manifestPath, manifest, { spaces: 2 });
+      manifest.author = projectDetails.author;
+      manifest.dependencies = {
+        ...manifest.dependencies,
+        ...projectDetails.dependencies,
+      };
+
+      await fs.writeJson(filePath, manifest, { spaces: 2 });
     } catch (error) {
       console.error("Error updating the manifest:", error);
     }
+  }
+
+  function getLatestVersions(dependencies) {
+    if(dependencies === "cors")
+      return "2.8.13";
+    else if(dependencies === "body-parser" )
+      return "1.19.0";
   }
 }
