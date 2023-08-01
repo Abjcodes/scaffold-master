@@ -12,7 +12,8 @@
   "license": "ISC",
   "bin": {
     "scaffold": "generatorCli.js",
-    "cb": "saveCli.js"
+    "cb": "saveCli.js",
+    "dlt": "deleteCli.js"
   },
   "dependencies": {
     "fs-extra": "^11.1.1",
