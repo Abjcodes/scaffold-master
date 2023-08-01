@@ -11,9 +11,9 @@
   "author": "",
   "license": "MIT",
   "bin": {
-    "scaffold": "./bin/generatorCli.js",
-    "cb": "./bin/saveCli.js",
-    "dlt": "./bin/deleteCli.js"
+    "sk-generate": "./bin/generatorCli.js",
+    "sk-save": "./bin/saveCli.js",
+    "sk-delete": "./bin/deleteCli.js"
   },
   "dependencies": {
     "fs-extra": "^11.1.1",

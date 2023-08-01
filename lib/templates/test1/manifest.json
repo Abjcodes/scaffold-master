@@ -1,0 +1,45 @@
+// Configure as needed
+
+{
+  "manifest_version": 3,
+  "name": "Extension_name",
+  "short_name": "Extension_short_name",
+  "version": "0.1",
+  "description": "Extension_escription",
+  "author": "Extension_author",
+  "homepage_url": "Extension_url",
+  "icons": {
+    // Extension icons
+  },
+  "default_locale": "en",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "",
+    "default_icon": {}
+  },
+
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": {
+    "js": ["js/content.js"]
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; style-src 'self'; media-src 'none'; child-src 'none'; connect-src 'none'; script-src 'self'; img-src 'self'; object-src 'none'"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "",
+        "mac": ""
+      }
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "103",
+  "permissions": ["activeTab", "storage", "tabs", "scripting"]
+}
