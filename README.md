@@ -20,7 +20,7 @@ Scaffold Master is a lightweight npm package that helps to generate, create and 
 
 ## 2. Installation
 
-To install Scaffold Kit, make sure you have Node.js and npm installed, then run the following command:
+To install Scaffold Master, make sure you have Node.js and npm installed, then run the following command:
 
 ```bash
 npm install -g scaffold-master
@@ -51,7 +51,7 @@ After providing all the required information, Scaffold master will copy the sele
 
 ### 3.3 Saving your own boilerplate
 
-Scaffold Kit also allows you to add your custom boilerplate templates. To do this, follow these steps:
+Scaffold Master also allows you to add your custom boilerplate templates. To do this, follow these steps:
 
 1.  Type `sm-create` in your terminal.
 2.  Enter the folder name for your custom boilerplate.
@@ -80,4 +80,4 @@ Scaffold Master is open-source software licensed under the MIT License.
 
 * * * * *
 
-Thank you for using Scaffold Kit! If you encounter any issues or need further assistance, please don't hesitate to reach out to us on the GitHub repository. Happy coding!
+Thank you for using Scaffold Master! If you encounter any issues or need further assistance, please don't hesitate to reach out to us on the GitHub repository. Happy coding!
