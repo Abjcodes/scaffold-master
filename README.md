@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
+1. [What is Scaffold-kit?](#introduction)
 2. [Installation](#installation)
 3. [Usage](#usage)
     - [Getting Started](#getting-started)
@@ -14,9 +14,9 @@
 5. [Contributing](#contributing)
 6. [License](#license)
 
-## 1. Introduction
+## 1. What is Scaffold-kit?
 
-Scaffold Kit is an npm package that provides boilerplate templates for various projects, making it easy to start new projects with the necessary structure and configuration. This documentation provides detailed instructions on how to install and use Scaffold Kit for generating project templates.
+Scaffold Kit is a lightweight npm package that helps to generate, create and manage boilerplates so they can be reproduced easily. Boilerplates can be anything from code snippet files to production-ready templates.
 
 ## 2. Installation
 
@@ -33,44 +33,46 @@ This will install Scaffold Kit globally on your system, allowing you to use it f
 
 ### 3.1 Getting Started
 
-Once Scaffold Kit is installed, you can use it by running the `scaffold` command in your terminal:
+Once Scaffold Kit is installed, you can use it by running the `sk-generate` command in your terminal:
 
-`scaffold`
+`sk-generate`
 
-This will present you with a list of available boilerplate templates to choose from.
+This will present you with a list of available boilerplate templates.
 
-### 3.2 Creating a Project
+### 3.2 Generating a boilerplate
 
 To create a new project using Scaffold Kit, follow these steps:
 
-1.  Run `scaffold` in your terminal.
+1.  Run `sk-generate` in your terminal.
 2.  Choose the desired boilerplate template from the list.
-3.  Enter the necessary project information when prompted (e.g., project name, version, description, author).
-4.  Select the additional dependencies you want to include in your project.
 
-After providing all the required information, Scaffold Kit will copy the selected boilerplate template to your current working directory, along with the specified package.json or manifest.json updates.
+After providing all the required information, Scaffold Kit will copy the selected boilerplate template to your current working directory.
 
-### 3.3 Custom Boilerplate
+### 3.3 Saving your own boilerplate
 
 Scaffold Kit also allows you to add your custom boilerplate templates. To do this, follow these steps:
 
-1.  Type `cb` in your terminal.
+1.  Type `sk-create` in your terminal.
 2.  Enter the folder name for your custom boilerplate.
-3.  Answer a series of questions regarding the boilerplate configuration, such as files to ignore.
+3.  Select the files to ignore.
 
 Your custom boilerplate template will be saved and can be used for future projects.
 
-4\. Dependencies
-----------------
+### 3.4 Deleting saved boilerplates
 
-When creating a project using Scaffold Kit, you have the option to select additional dependencies to include. The available dependencies are presented in a checklist format, and you can choose the ones you need for your project.
+You can remove any saved boilerplates using Scaffold-kit. To do this, follow these steps:
 
-5\. Contributing
+1. Type `sk-delete` in your terminal.
+2. Select the boilerplate you want to delete from the list of saved boilerplates
+
+The boilerplate which you selected will be deleted. This action is irreversible.
+
+4\. Contributing
 ----------------
 
 If you would like to contribute to Scaffold Kit, feel free to open issues or submit pull requests on the project's GitHub repository. Your contributions are highly appreciated!
 
-6\. License
+5\. License
 -----------
 
 Scaffold Kit is open-source software licensed under the MIT License. 
