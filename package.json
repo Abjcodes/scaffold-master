@@ -1,14 +1,47 @@
 {
   "name": "scaffold-kit",
   "version": "1.0.0",
-  "description": "",
+  "description": "A lightweight scaffolding package for creating, generating and managing boilerplates",
+  "author": [
+    {
+      "name": "Abijith Vasanthakumar",
+      "email": "abijithmv01@gmail.com"
+    },
+    {
+      "name": "Abel Simon Zachariah",
+      "email": "abelsimonz@gmail.com"
+    }
+  ],
   "main": "./lib/generator.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "boilerplate",
+    "generator",
+    "scaffolder",
+    "template",
+    "starter",
+    "skeleton",
+    "base",
+    "framework",
+    "library",
+    "tool",
+    "react",
+    "webpack",
+    "typescript",
+    "angular",
+    "npm",
+    "ionic",
+    "ember",
+    "handlebars",
+    "vue",
+    "webpack",
+    "laravel",
+    "php",
+    "symfony"
+  ],
   "license": "MIT",
   "bin": {
     "sk-generate": "./bin/generatorCli.js",
