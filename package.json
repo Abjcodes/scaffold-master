@@ -1,5 +1,5 @@
 {
-  "name": "scaffold-kit",
+  "name": "scaffold-master",
   "version": "1.0.0",
   "description": "A lightweight scaffolding package for creating, generating and managing boilerplates",
   "author": [
@@ -44,9 +44,9 @@
   ],
   "license": "MIT",
   "bin": {
-    "sk-generate": "./bin/generatorCli.js",
-    "sk-save": "./bin/saveCli.js",
-    "sk-delete": "./bin/deleteCli.js"
+    "sm-generate": "./bin/generatorCli.js",
+    "sm-save": "./bin/saveCli.js",
+    "sm-delete": "./bin/deleteCli.js"
   },
   "dependencies": {
     "fs-extra": "^11.1.1",
