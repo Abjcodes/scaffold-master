@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
+1. [What is Scaffold-kit?](#introduction)
 2. [Installation](#installation)
 3. [Usage](#usage)
     - [Getting Started](#getting-started)
@@ -14,9 +14,9 @@
 5. [Contributing](#contributing)
 6. [License](#license)
 
-## 1. Introduction
+## 1. What is Scaffold-kit?
 
-Scaffold Kit is an npm package that provides boilerplate templates for various projects, making it easy to start new projects with the necessary structure and configuration. This documentation provides detailed instructions on how to install and use Scaffold Kit for generating project templates.
+Scaffold Kit is a lightweight npm package that helps to generate, create and manage boilerplates so they can be reproduced easily. Boilerplates can be anything from code snippet files to production-ready templates.
 
 ## 2. Installation
 
@@ -37,7 +37,7 @@ Once Scaffold Kit is installed, you can use it by running the `sk-generate` comm
 
 `sk-generate`
 
-This will present you with a list of available boilerplate templates to choose from.
+This will present you with a list of available boilerplate templates.
 
 ### 3.2 Generating a boilerplate
 
@@ -48,7 +48,7 @@ To create a new project using Scaffold Kit, follow these steps:
 
 After providing all the required information, Scaffold Kit will copy the selected boilerplate template to your current working directory.
 
-### 3.3 Custom Boilerplate
+### 3.3 Saving your own boilerplate
 
 Scaffold Kit also allows you to add your custom boilerplate templates. To do this, follow these steps:
 
@@ -57,6 +57,15 @@ Scaffold Kit also allows you to add your custom boilerplate templates. To do thi
 3.  Select the files to ignore.
 
 Your custom boilerplate template will be saved and can be used for future projects.
+
+### 3.4 Deleting saved boilerplates
+
+You can remove any saved boilerplates using Scaffold-kit. To do this, follow these steps:
+
+1. Type `sk-delete` in your terminal.
+2. Select the boilerplate you want to delete from the list of saved boilerplates
+
+The boilerplate which you selected will be deleted. This action is irreversible.
 
 4\. Contributing
 ----------------
