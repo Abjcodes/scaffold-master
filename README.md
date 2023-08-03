@@ -45,6 +45,7 @@ To create a new project using Scaffold Master, follow these steps:
 
 1.  Run `sm-generate` in your terminal.
 2.  Choose the desired boilerplate template from the list.
+3.  Make sure to run `npm i` if there is a package.json file.
 
 After providing all the required information, Scaffold master will copy the selected boilerplate template to your current working directory.
 
