@@ -4,7 +4,7 @@
 
 ## Table of Contents
 
-1. [What is scaffold-master?](#introduction)
+1. [What is scaffold-master?](#what-is-scaffold-master)
 2. [Installation](#installation)
 3. [Usage](#usage)
     - [Getting Started](#getting-started)
