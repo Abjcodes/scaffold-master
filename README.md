@@ -1,9 +1,6 @@
 # scaffold-master
 
-
-https://github.com/Abjcodes/scaffold-master/assets/42151354/1360091c-8769-4e4a-ac7b-537664f66dcb
-
-
+![Untitled](https://github.com/Abjcodes/scaffold-master/assets/42151354/2aafee48-2637-4773-802a-4fe006b2d0bb)
 
 ## Scaffold Master - NPM Package Documentation
 
