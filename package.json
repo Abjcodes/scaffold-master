@@ -2,6 +2,7 @@
   "name": "scaffold-master",
   "version": "1.0.0",
   "description": "A lightweight scaffolding package for creating, generating and managing boilerplates",
+  "preferGlobal": true,
   "author": [
     {
       "name": "Abijith Vasanthakumar",
@@ -16,6 +17,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abjcodes/scaffold-master"
   },
   "keywords": [
     "boilerplate",
