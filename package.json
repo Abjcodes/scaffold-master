@@ -1,6 +1,6 @@
 {
   "name": "scaffold-master",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight scaffolding package for creating, generating and managing boilerplates",
   "preferGlobal": true,
   "author": [
